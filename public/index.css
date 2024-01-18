@@ -1,0 +1,63 @@
+@keyframes backgroundAnimation {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Arrière-plan gradient */
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background-size: 200% 200%;
+    animation: backgroundAnimation 15s ease infinite;
+}
+
+#roomContainer {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#createRoomBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+#createRoomBtn:hover, #createRoomBtn:focus {
+    transform: scale(1.05);
+}
+
+#roomsList {
+    list-style: none;
+    padding: 0;
+}
+
+#roomsList li {
+    padding: 5px 10px;
+    margin: 5px 0;
+    background-color: #ff6b6b;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#roomsList li:hover {
+    transform: scale(1.05);
+}
+
+canvas {
+    border: 4px solid #fff; /* Bordure plus épaisse */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* Ombre pour le démarquer */
+}
