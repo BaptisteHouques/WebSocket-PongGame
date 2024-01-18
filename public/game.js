@@ -5,7 +5,8 @@ ballImage.src = '/images/macon.png';
 
 // Définition des propriétés de base pour les raquettes et la balle
 const paddleWidth = 10, paddleHeight = 60;
-const scoreMax = 2;
+const scoreMax = 5;
+
 let leftPaddleY = 170, rightPaddleY = 170;
 let ballX = canvas.width / 2, ballY = canvas.height / 2;
 let ballSpeedX = 2, ballSpeedY = 2;
