@@ -6,10 +6,14 @@ ballImage.src = '/images/macon.png';
 // Définition des propriétés de base pour les raquettes et la balle
 const paddleWidth = 10, paddleHeight = 60;
 const scoreMax = 5;
+const speedIncreaseFactor = 1.1;
+const initialBallSpeedX = 2;
+const initialBallSpeedY = 2;
 
 let leftPaddleY = 170, rightPaddleY = 170;
 let ballX = canvas.width / 2, ballY = canvas.height / 2;
-let ballSpeedX = 2, ballSpeedY = 2;
+let ballSpeedX = initialBallSpeedX;
+let ballSpeedY = initialBallSpeedY;
 let isGameStarted = false;
 
 let scoreLeft = 0;
@@ -28,6 +32,11 @@ socket.on('ballMoved', (data) => {
 
 function sendBallPosition() {
     socket.emit('updateBallPosition', { x: ballX, y: ballY, roomId: currentRoomId });
+}
+
+function accelerateBall() {
+    ballSpeedX *= speedIncreaseFactor;
+    ballSpeedY *= speedIncreaseFactor;
 }
 
 function updatePaddlePosition(player, posY) {
@@ -152,15 +161,16 @@ function checkBallBounds() {
 function resetBall() {
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
-    // Choisissez de réinitialiser ou d'inverser la direction de la balle
-    ballSpeedX = -ballSpeedX;
-    ballSpeedY = -ballSpeedY;
+    // Réinitialiser la vitesse de la balle à sa vitesse initiale
+    ballSpeedX = initialBallSpeedX * (Math.random() > 0.5 ? 1 : -1); // Inverser aléatoirement la direction horizontale
+    ballSpeedY = initialBallSpeedY * (Math.random() > 0.5 ? 1 : -1); // Inverser aléatoirement la direction verticale
 }
 
 function checkPaddleCollision() {
     if ((ballX <= paddleWidth && ballY >= leftPaddleY && ballY <= leftPaddleY + paddleHeight) ||
         (ballX >= canvas.width - paddleWidth && ballY >= rightPaddleY && ballY <= rightPaddleY + paddleHeight)) {
         ballSpeedX = -ballSpeedX;
+        accelerateBall(); // Accélérer la balle après le rebond
     }
 }
 
