@@ -1,3 +1,5 @@
+Baptiste Houques
+
 # WebSocket - PongGame
 Le WebSocket Pong Game est une version moderne et interactive du jeu classique de Pong.
 Utilisant la technologie WebSocket pour une expérience multijoueur en temps réel,
